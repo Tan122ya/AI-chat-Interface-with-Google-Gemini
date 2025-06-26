@@ -1,0 +1,17 @@
+{
+  "name": "ai-chatbot",
+  "version": "1.0.0",
+  "description": "AI ChatBot",
+  "main": "script.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config --experimental-json-modules server.js"
+  },
+  "author": "Muskan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2"
+  }
+}
