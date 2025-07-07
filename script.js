@@ -24,28 +24,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function generateResponse() {
-        let obj = {
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-            body: JSON.stringify({
-                contents: [
-                    {
-                        parts:[
-                            {
-                            text: user.message
-                            },
-                            (user.file.data? {
-                                inline_data : user.file
-                            
-                            }:[])
-                        ]
-                    }
-                ]
-            })
-        };
+        let parts = [{ text: user.message }];
+        if (user.file.data) {
+            parts.push({ inline_data: user.file });
+        }
+
 
         try{
-            let response = await fetch(api_url, obj);
+            let response = await fetch(api_url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    contents: [
+                        {
+                            parts: parts
+                        }
+                    ]
+                })
+            });
             let data = await response.json();
             let aiRes = data.candidates[0].content.parts[0].text.replace(/\*/g, " ").trim();
 

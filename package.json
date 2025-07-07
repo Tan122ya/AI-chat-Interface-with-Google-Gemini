@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "AI ChatBot",
   "main": "script.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon -r dotenv/config --experimental-json-modules server.js"
   },
